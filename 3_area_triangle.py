@@ -3,17 +3,28 @@
 
 def main():
     while True:
-        try:
-            height = int(input("Enter height of the triangle: "))
-            base = int(input("Enter base of triangle: "))
-            
-            area_of_triangle = 0.5 * base * height
-
-            print (f"Area of triangle is {area_of_triangle}")
-            break
+    
         
+        
+        area_of_triangle = 0.5 * height() * base()
+
+        print (f"Area of triangle is {area_of_triangle}")
+        break
+        
+
+def height():
+    while True:
+        try:
+            return(int(input("Enter height of the triangle: ")))
         except:
-            print ("You can only enter a whole number.")
+            print ("You can only enter a whole number. Please enter height again.")
+
+def base():
+    while True:
+        try:
+            return(int(input("Enter base of the triangle: ")))
+        except:
+            print("You can only enter a whole number. Please enter base again.")
 
 if __name__ == "__main__":
     main()
