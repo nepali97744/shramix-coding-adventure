@@ -1,0 +1,2 @@
+shramik,20,tuco
+lala,22,lllolo

@@ -1,0 +1,45 @@
+# 2 Simple calculator (addition, subtraction, multiplication, division)
+
+def main():
+    
+    num1 = int(input("Enter your first number: "))
+    num2 = int(input("Enter your second number: "))
+
+    calc = input("What do you want to do? press A for addition, S for Subtraction, " \
+                    "M for Multiplication and D for Divide: ").upper()
+   
+    if calc == "A":
+        result = add(num1, num2)
+        print (f"The total of two number is {result} ")
+    elif calc == "S":
+        result = subtraction(num1, num2)
+        print (f"First number minus second number is {result}")
+
+    elif calc == "M":
+        result = multiplication(num1, num2)
+        print (f"First number multiplied by second number is {result}")
+
+    elif calc == "D":
+        try:
+            result = divide(num1,num2)
+            print (f"First number divided by second number is {result}")
+        except ZeroDivisionError:
+            print ("Sorry you cant divide by zero.")
+
+    else:
+        print ("You can only enter A, S, M or D, no other options allowed. Thank you.") 
+
+def add(a,b):
+    return a + b
+
+def subtraction(a,b):
+    return a - b
+
+def multiplication(a,b):
+    return a * b
+
+def divide(a,b):
+    return a/b
+
+if __name__ == "__main__":
+    main()
