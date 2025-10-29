@@ -6,7 +6,7 @@ import random
 def main():
     random_number = random.random()
 
-    print (random_number)
+    print (f"Your random number is {random_number}")
     
 
 if __name__ == "__main__":
