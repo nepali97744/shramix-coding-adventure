@@ -9,13 +9,22 @@ def main():
             user_input = int(input("Please enter a number you would like to generate multiplication table for: "))
             table_len = int(input("Please enter how long you want the table to be: "))
 
-            for i in range(table_len):
-                j = i + 1
-                total = user_input * j
-                print(f"{user_input} * {j} = {total}" )
-            break
+            table(user_input, table_len)
+            try_again = input("Do you want to continue? (Y/N) ").lower()
+            if try_again == "y":
+                continue
+            else:
+                break
+
+            
         except:
             print ("Please only enter numbers. Thank you, try again.")
+
+def table(user_input, table_len):
+      for i in range(table_len):
+                j = i + 1
+                total = user_input * j
+                print(f"{user_input} * {j} = {total}")
 
 
 
