@@ -4,6 +4,11 @@ def main():
     user_word = input ("Please enter word to find out how many vowels there are in it: ").lower()
 
     vowels = "aeiou"
+
+    total_vowels(vowels, user_word)
+    
+    
+def total_vowels(vowels, user_word):
     count = 0
     for c in user_word:
         if c in vowels:
