@@ -2,9 +2,13 @@
 
 def main():
     user_input = input("Plase enter a word to count: ")
-    total = 0
-
     
+    len_string(user_input)
+    
+    
+
+def len_string(user_input):
+    total = 0
     for _ in user_input:
         total+=1
 
