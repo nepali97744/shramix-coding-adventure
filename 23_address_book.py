@@ -4,7 +4,7 @@ def main():
 
     while True:
         try:
-            add_or_read = input("Do you want to add to the address book or look at the address book? Type A to add, B to look or E to exit ").lower()
+            add_or_read = input("Do you want to add to the address book or look at the address book? Type A to add, B to look or E to exit: ").lower()
             if add_or_read == "a":
                 write_to_book()
             elif add_or_read == "b":

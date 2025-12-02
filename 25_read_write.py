@@ -20,14 +20,16 @@ def main():
 def write_to_file():
     with open("25_file.txt", "a") as file:
         name = input("What's your name? ").strip().upper()
-        file.write(name)
-        file.write("\n")
+        age = input("How old are you?: ")
+        file.write(f"{name} , {age}\n")
 
 def read_from_file():
-    with open("25_file.txt") as file:
+    with open("25_file.txt", "r") as file:
         for line in file:
+            stripped_line = line.strip()
+            name, age = stripped_line.split(" , ")
            
-            print(f"Hi, my name is {line}", end = "")
+            print(f"Hi, my name is {name}, and I am {age} years old")
 
 
 
