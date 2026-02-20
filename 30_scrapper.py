@@ -17,41 +17,45 @@ def main():
     
     raw_soup = BeautifulSoup(website.text, "html.parser")
 
-    titles = raw_soup.find_all("h3", class_ = "alith_post_title")[:5]
+    titles = raw_soup.find_all("h3", class_ = "alith_post_title")[:2]
+
+    write_to_file(time_string, titles)
     
-    with open("30_scrapper.txt", "a", encoding= "utf-8") as f:
-        f.write(time_string + "\n")
-        f.write("\n" * 5)
-        for title in titles:
-            link = title.find("a")
-            if link and title.text.strip():
 
-                article_link = link.get("href")
-                
-                article_title = title.text.strip()
-                article_title_soup = requests.get(article_link)
-                article_soup = BeautifulSoup(article_title_soup.text, "html.parser")
+def write_to_file(time_string,titles):
+        with open("30_scrapper.txt", "w", encoding= "utf-8") as f:
+            f.write(time_string + "\n")
+            f.write("\n" * 5)
+            for title in titles:
+                link = title.find("a")
+                if link and title.text.strip():
 
-                
-                
-                f.write(article_title + "\n")
-                f.write(article_link + "\n")
+                    article_link = link.get("href")
+                    
+                    article_title = title.text.strip()
+                    article_title_soup = requests.get(article_link)
+                    article_soup = BeautifulSoup(article_title_soup.text, "html.parser")
 
-                # print (article_title)
-                # print(article_link)
-                
-                articles = article_soup.find_all("div", class_ = "dropcap column-1 animate-box")
                     
                     
-                for article in articles:
-                    article_text_all = article.find_all("p")
-                    if article_text_all:
-                        for article1 in article_text_all:
-                            f.write(article1.text + "\n")
-                        f.write("-" * 100 + "\n\n\n\n")
-                time.sleep(1)
+                    f.write(article_title + "\n")
+                    f.write(article_link + "\n")
 
-        print("scrape successfull.")
+                    # print (article_title)
+                    # print(article_link)
+                    
+                    articles = article_soup.find_all("div", class_ = "dropcap column-1 animate-box")
+                        
+                        
+                    for article in articles:
+                        article_text_all = article.find_all("p")
+                        if article_text_all:
+                            for article1 in article_text_all:
+                                f.write(article1.text + "\n")
+                            f.write("-" * 100 + "\n\n\n\n")
+                    time.sleep(1)
+
+            print("scrape successfull.")
                     
 
                     
