@@ -1,4 +1,5 @@
 from datetime import datetime
+from turtle import title
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -12,15 +13,26 @@ def main():
 
 
 
-    website = requests.get("https://thehimalayantimes.com/")
+    #website = requests.get("https://thehimalayantimes.com/")
 
     
-    raw_soup = BeautifulSoup(website.text, "html.parser")
+    #raw_soup = BeautifulSoup(website.text, "html.parser")
 
-    titles = raw_soup.find_all("h3", class_ = "alith_post_title")[:2]
+    #titles = raw_soup.find_all("h3", class_ = "alith_post_title")[:2]
 
+    titles = website_to_scrape("https://thehimalayantimes.com/")
     write_to_file(time_string, titles)
     
+
+def website_to_scrape(website):
+    raw_data = requests.get(website)
+    website_soup = BeautifulSoup(raw_data.text, "html.parser")
+    titles = website_soup.find_all("h3", class_ = "alith_post_title" )
+    return (titles)
+
+    
+
+
 
 def write_to_file(time_string,titles):
         with open("30_scrapper.txt", "w", encoding= "utf-8") as f:
@@ -53,7 +65,7 @@ def write_to_file(time_string,titles):
                             for article1 in article_text_all:
                                 f.write(article1.text + "\n")
                             f.write("-" * 100 + "\n\n\n\n")
-                    time.sleep(1)
+                    #time.sleep(1)
 
             print("scrape successfull.")
                     
