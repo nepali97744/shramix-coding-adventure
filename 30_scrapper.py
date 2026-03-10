@@ -28,7 +28,7 @@ def main():
 def website_to_scrape(website):
     raw_data = requests.get(website)
     website_soup = BeautifulSoup(raw_data.text, "html.parser")
-    titles = website_soup.find_all("h3", class_ = "alith_post_title" )
+    titles = website_soup.find_all("h3", class_ = "alith_post_title" )[:20]
     return (titles)
 
     
