@@ -1,27 +1,28 @@
 from datetime import datetime
-from turtle import title
+
 import requests
 from bs4 import BeautifulSoup
 import time
 
 def main():
     
+    with requests.Session() as session:
     
-    now = datetime.now()
-    time_string = now.strftime("%d/%m/%Y Time: %H:%M")
+        now = datetime.now()
+        time_string = now.strftime("%d/%m/%Y Time: %H:%M")
 
 
 
 
-    #website = requests.get("https://thehimalayantimes.com/")
+        #website = requests.get("https://thehimalayantimes.com/")
 
-    
-    #raw_soup = BeautifulSoup(website.text, "html.parser")
+        
+        #raw_soup = BeautifulSoup(website.text, "html.parser")
 
-    #titles = raw_soup.find_all("h3", class_ = "alith_post_title")[:2]
+        #titles = raw_soup.find_all("h3", class_ = "alith_post_title")[:2]
 
-    titles = website_to_scrape("https://thehimalayantimes.com/")
-    write_to_file(time_string, titles)
+        titles = website_to_scrape("https://thehimalayantimes.com/")
+        write_to_file(session, time_string, titles)
     
 
 def website_to_scrape(website):
@@ -34,7 +35,7 @@ def website_to_scrape(website):
 
 
 
-def write_to_file(time_string,titles):
+def write_to_file(session, time_string,titles):
         with open("30_scrapper.txt", "w", encoding= "utf-8") as f:
             f.write(time_string + "\n")
             f.write("\n" * 5)
