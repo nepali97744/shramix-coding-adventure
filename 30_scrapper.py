@@ -39,14 +39,15 @@ def write_to_file(session, time_string,titles):
         with open("30_scrapper.txt", "w", encoding= "utf-8") as f:
             f.write(time_string + "\n")
             f.write("\n" * 5)
+            count = 0
             for title in titles:
                 link = title.find("a")
                 if link and title.text.strip():
-
+                    count +=1
                     article_link = link.get("href")
                     
                     article_title = title.text.strip()
-                    article_title_soup = requests.get(article_link)
+                    article_title_soup = session.get(article_link)
                     article_soup = BeautifulSoup(article_title_soup.text, "html.parser")
 
                     
@@ -61,11 +62,15 @@ def write_to_file(session, time_string,titles):
                         
                         
                     for article in articles:
+                        
                         article_text_all = article.find_all("p")
                         if article_text_all:
                             for article1 in article_text_all:
                                 f.write(article1.text + "\n")
+                             
                             f.write("-" * 100 + "\n\n\n\n")
+                     
+                print(f"Articles: {count}")
                     #time.sleep(1)
 
             print("scrape successfull.")
