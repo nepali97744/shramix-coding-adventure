@@ -58,6 +58,7 @@ def write_to_file(session, time_string,titles):
                         
                         f.write(article_title + "\n")
                         f.write(article_link + "\n")
+                        f.write(article_link + "\n" )
 
                         # print (article_title)
                         # print(article_link)
